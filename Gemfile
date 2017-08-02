@@ -36,6 +36,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'guard-rspec', '~> 4.7.3'
   gem 'rspec-rails', '~> 3.6.0'
+  gem 'spring-commands-rspec', '~> 1.0.4'
 end
 
 group :development do
