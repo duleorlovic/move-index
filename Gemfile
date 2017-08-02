@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 2.14.4'
+  gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'faker', '~> 1.7.3'
   gem 'guard-rspec', '~> 4.7.3'
   gem 'rspec-rails', '~> 3.6.0'
   gem 'spring-commands-rspec', '~> 1.0.4'
