@@ -1,0 +1,21 @@
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - db/migrate/*
+
+Rails:
+  Enabled: true
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*_spec.rb"
+
+Style/Documentation:
+  Enabled: false
+
+# feature tests needs this
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/features/*_spec.rb"
