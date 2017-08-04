@@ -43,6 +43,6 @@ RSpec.describe User do
   end
 
   it 'has a valid factory' do
-    expect(create(described_class.name.underscore)).to be_persisted
+    expect(build(described_class.name.underscore)).to be_valid
   end
 end
