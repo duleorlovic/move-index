@@ -8,6 +8,13 @@ AllCops:
 Rails:
   Enabled: true
 
+Style/TrailingCommaInLiteral:
+  Enabled: false
+
+Rails/Output:
+  Exclude:
+    - db/seeds.rb
+
 Metrics/BlockLength:
   Exclude:
     - "**/*_spec.rb"
