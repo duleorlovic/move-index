@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807054634) do
+ActiveRecord::Schema.define(version: 20170809123658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,67 @@ ActiveRecord::Schema.define(version: 20170807054634) do
     t.index ["activity_id", "sport_id"], name: "index_activity_sports_on_activity_id_and_sport_id", unique: true
     t.index ["activity_id"], name: "index_activity_sports_on_activity_id"
     t.index ["sport_id"], name: "index_activity_sports_on_sport_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at"
+    t.datetime "registration_opens_at"
+    t.datetime "registration_ends_at"
+    t.string "email"
+    t.string "website"
+    t.integer "status"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_events_on_organization_id"
+  end
+
+  create_table "organization_sports", force: :cascade do |t|
+    t.bigint "organization_id"
+    t.bigint "sport_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id", "sport_id"], name: "index_organization_sports_on_organization_id_and_sport_id", unique: true
+    t.index ["organization_id"], name: "index_organization_sports_on_organization_id"
+    t.index ["sport_id"], name: "index_organization_sports_on_sport_id"
+  end
+
+  create_table "organization_users", force: :cascade do |t|
+    t.bigint "organization_id"
+    t.bigint "user_id"
+    t.integer "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id", "user_id"], name: "index_organization_users_on_organization_id_and_user_id", unique: true
+    t.index ["organization_id"], name: "index_organization_users_on_organization_id"
+    t.index ["user_id"], name: "index_organization_users_on_user_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "category"
+    t.string "username"
+    t.datetime "birth_date"
+    t.text "address"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.string "zip"
+    t.string "website"
+    t.string "email"
+    t.string "phone_number"
+    t.string "mobile_phone_number"
+    t.string "national_registration_id"
+    t.integer "status"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sports", force: :cascade do |t|

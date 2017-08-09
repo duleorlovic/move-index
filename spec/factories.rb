@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 FactoryGirl.define do
   factory :activity do
     sequence(:name) { |n| "activity#{n}" }
@@ -10,6 +11,25 @@ FactoryGirl.define do
   factory :activity_sport do
     activity
     sport
+  end
+
+  factory :organization do
+    sequence(:name) { |n| "organization#{n}" }
+  end
+
+  factory :organization_user do
+    organization
+    user
+  end
+
+  factory :organization_sport do
+    organization
+    sport
+  end
+
+  factory :event do
+    sequence(:name) { |n| "event#{n}" }
+    organization
   end
 
   factory :user do

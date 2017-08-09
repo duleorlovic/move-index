@@ -9,12 +9,17 @@ kayaking activity. Triatlong belongs to running, cycling and swimming activity.
 
 Every sport usually have disciplines: man, woman, age range, distance.
 
-Event belongs to one sport (if there are multiple sports, than create multiple
-events). Event can be multidays and has many races.
+Event can be multidays and has many races.
+Events can be edited by any user until it is approved.
+Event belongs to organization. Organization has and belongs to many users, so
+they can edit them and their approved events.
+Events has and belongs to many sports through races.
 
-Race belongs to discipline and event and has many participants.
+Race belongs to discipline and event, has and belongs to many sports and has
+many participants.
 
 Discipline has text representation, but also lenght in m and belongs to sport.
+We can search by disciplines.
 
 Participant can have many competitors, for example in group kayaking or in relay
 race (multiple competitors in same discipline).

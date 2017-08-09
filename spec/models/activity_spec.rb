@@ -18,6 +18,7 @@ RSpec.describe Activity do
   describe 'validations' do
     subject { build :activity } # use factory since implicit subject is empty
 
+    it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_uniqueness_of :name }
     it { is_expected.to have_db_index(:name).unique(true) }
   end
