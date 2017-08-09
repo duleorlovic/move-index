@@ -33,7 +33,8 @@ RSpec.describe Event do
       event.ends_at = event.starts_at - 1.day
       event.valid?
 
-      expect(event.errors[:ends_at]).to include "can't be greater than starts_at"
+      expect(event.errors[:ends_at]).to include "can't be greater than "\
+        'starts_at'
     end
   end
 

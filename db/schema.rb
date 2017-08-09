@@ -42,15 +42,15 @@ ActiveRecord::Schema.define(version: 20170809123658) do
     t.integer "status"
     t.float "latitude"
     t.float "longitude"
-    t.bigint "organization_id"
+    t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_events_on_organization_id"
   end
 
   create_table "organization_sports", force: :cascade do |t|
-    t.bigint "organization_id"
-    t.bigint "sport_id"
+    t.bigint "organization_id", null: false
+    t.bigint "sport_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id", "sport_id"], name: "index_organization_sports_on_organization_id_and_sport_id", unique: true
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20170809123658) do
   end
 
   create_table "organization_users", force: :cascade do |t|
-    t.bigint "organization_id"
-    t.bigint "user_id"
+    t.bigint "organization_id", null: false
+    t.bigint "user_id", null: false
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -122,4 +122,9 @@ ActiveRecord::Schema.define(version: 20170809123658) do
 
   add_foreign_key "activity_sports", "activities"
   add_foreign_key "activity_sports", "sports"
+  add_foreign_key "events", "organizations"
+  add_foreign_key "organization_sports", "organizations"
+  add_foreign_key "organization_sports", "sports"
+  add_foreign_key "organization_users", "organizations"
+  add_foreign_key "organization_users", "users"
 end

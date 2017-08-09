@@ -13,7 +13,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.float :latitude
       t.float :longitude
 
-      t.references :organization
+      t.references :organization, foreign_key: true, null: false
 
       t.timestamps
     end
