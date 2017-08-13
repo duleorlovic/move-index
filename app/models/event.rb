@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :organization
-  validates :name, presence: true
 
+  validates :name, :organization, presence: true
   validate :_ends_at_greated_than_starts_at
 
   def _ends_at_greated_than_starts_at

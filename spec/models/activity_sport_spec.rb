@@ -11,6 +11,8 @@ RSpec.describe ActivitySport do
   describe 'validations' do
     subject { build :activity_sport } # use factory,implicit subject is empty
 
+    it { is_expected.to validate_presence_of :activity }
+    it { is_expected.to validate_presence_of :sport }
     it { is_expected.to have_db_index(%i[activity_id sport_id]).unique(true) }
   end
 

@@ -30,6 +30,13 @@ FactoryGirl.define do
   factory :event do
     sequence(:name) { |n| "event#{n}" }
     organization
+    starts_at '2017-08-01'
+  end
+
+  factory :discipline do
+    sequence(:name) { |n| "discipline#{n}" }
+    sport
+    event
   end
 
   factory :user do
@@ -40,5 +47,40 @@ FactoryGirl.define do
     factory :unconfirmed_user do
       confirmed_at nil
     end
+  end
+
+  factory :registration do
+    user
+    discipline
+  end
+
+  factory :race do
+    discipline
+  end
+
+  factory :participation do
+    race
+    after(:build) do |participation|
+      participation.race.discipline.number_of_crew.times do
+        participation.registration_participations.append(
+          build(:registration_participation, participation: participation)
+        )
+      end
+    end
+  end
+
+  factory :registration_participation do
+    registration
+    participation
+  end
+
+  factory :check_point do
+    discipline
+  end
+
+  factory :result do
+    participation
+    check_point
+    time_in_s 112.251
   end
 end

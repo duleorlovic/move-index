@@ -26,6 +26,7 @@ RSpec.describe Event do
   describe 'validations' do
     subject(:event) { build :event } # use factory, implicit subject is empty
 
+    it { is_expected.to validate_presence_of :organization }
     it { is_expected.to validate_presence_of :name }
 
     it 'ends at if exists is later than starts_at' do

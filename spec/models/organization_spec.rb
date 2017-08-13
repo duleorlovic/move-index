@@ -36,5 +36,9 @@ RSpec.describe Organization do
     it { is_expected.to validate_presence_of :name }
   end
 
+  it 'define gender' do
+    is_expected.to define_enum_for(:status).with(%i[personal registered_club])
+  end
+
   it_behaves_like 'has_valid_factory'
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809123658) do
+ActiveRecord::Schema.define(version: 20170813070831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,28 @@ ActiveRecord::Schema.define(version: 20170809123658) do
     t.index ["activity_id", "sport_id"], name: "index_activity_sports_on_activity_id_and_sport_id", unique: true
     t.index ["activity_id"], name: "index_activity_sports_on_activity_id"
     t.index ["sport_id"], name: "index_activity_sports_on_sport_id"
+  end
+
+  create_table "check_points", force: :cascade do |t|
+    t.bigint "discipline_id"
+    t.integer "distance"
+    t.integer "order"
+    t.index ["discipline_id"], name: "index_check_points_on_discipline_id"
+  end
+
+  create_table "disciplines", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "gender"
+    t.integer "distance_m"
+    t.integer "age_min"
+    t.integer "age_max"
+    t.integer "number_of_crew"
+    t.bigint "sport_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_disciplines_on_event_id"
+    t.index ["sport_id"], name: "index_disciplines_on_sport_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -91,6 +113,49 @@ ActiveRecord::Schema.define(version: 20170809123658) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "participations", force: :cascade do |t|
+    t.bigint "race_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["race_id"], name: "index_participations_on_race_id"
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.string "name"
+    t.datetime "starts_at"
+    t.integer "category"
+    t.bigint "discipline_id", null: false
+    t.index ["discipline_id"], name: "index_races_on_discipline_id"
+  end
+
+  create_table "registration_participations", force: :cascade do |t|
+    t.bigint "registration_id"
+    t.bigint "participation_id"
+    t.index ["participation_id"], name: "index_registration_participations_on_participation_id"
+    t.index ["registration_id", "participation_id"], name: "i_registration_participations_uniq", unique: true
+    t.index ["registration_id"], name: "index_registration_participations_on_registration_id"
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "discipline_id", null: false
+    t.integer "status"
+    t.string "tshirt_size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discipline_id"], name: "index_registrations_on_discipline_id"
+    t.index ["user_id"], name: "index_registrations_on_user_id"
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.bigint "participation_id", null: false
+    t.bigint "check_point_id", null: false
+    t.float "time_in_s"
+    t.index ["check_point_id"], name: "index_results_on_check_point_id"
+    t.index ["participation_id", "check_point_id"], name: "index_results_on_participation_id_and_check_point_id", unique: true
+    t.index ["participation_id"], name: "index_results_on_participation_id"
+  end
+
   create_table "sports", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -122,9 +187,20 @@ ActiveRecord::Schema.define(version: 20170809123658) do
 
   add_foreign_key "activity_sports", "activities"
   add_foreign_key "activity_sports", "sports"
+  add_foreign_key "check_points", "disciplines"
+  add_foreign_key "disciplines", "events"
+  add_foreign_key "disciplines", "sports"
   add_foreign_key "events", "organizations"
   add_foreign_key "organization_sports", "organizations"
   add_foreign_key "organization_sports", "sports"
   add_foreign_key "organization_users", "organizations"
   add_foreign_key "organization_users", "users"
+  add_foreign_key "participations", "races"
+  add_foreign_key "races", "disciplines"
+  add_foreign_key "registration_participations", "participations"
+  add_foreign_key "registration_participations", "registrations"
+  add_foreign_key "registrations", "disciplines"
+  add_foreign_key "registrations", "users"
+  add_foreign_key "results", "check_points"
+  add_foreign_key "results", "participations"
 end

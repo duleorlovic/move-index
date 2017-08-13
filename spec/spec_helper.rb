@@ -90,4 +90,9 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  # exclude gems from backtrace, show again with rspec file_spec.rb -b
+  config.backtrace_exclusion_patterns = [
+    /gems/,
+  ]
 end
