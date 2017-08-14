@@ -1,24 +1,22 @@
-# README
+# Move Index
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+What is your move index ?
 
-Things you may want to cover:
+This project aims to make it easier for people to move.
 
-* Ruby version
+# What is included/used
 
-* System dependencies
+* Ruby on Rails
+* Postresql
+* Rspec
+  * [rspec_api_documentation](https://github.com/zipmark/rspec_api_documentation)
 
-* Configuration
 
-* Database creation
+# Tests
 
-* Database initialization
+Run tests with `rake`
 
-* How to run the test suite
+# Background Services needed for this
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+# Deployment instructions

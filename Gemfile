@@ -62,3 +62,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # oauth provider
 gem 'doorkeeper', '~> 4.2.6'
+
+# api documentation
+gem 'rspec_api_documentation'
+# api documentation viewer
+gem 'apitome'
+# json api
+gem 'jsonapi-resources'
