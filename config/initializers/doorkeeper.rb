@@ -12,6 +12,11 @@ Doorkeeper.configure do
     #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
   end
 
+  resource_owner_from_credentials do
+    user = User.find_for_database_authentication(email: params[:username])
+    user if user && user.valid_password?(params[:password])
+  end
+
   # If you want to restrict access to the web interface for adding oauth
   # authorized applications, you need to declare the block below.
   # admin_authenticator do
@@ -75,6 +80,7 @@ Doorkeeper.configure do
   # object.  Check out the wiki for more information on customization
   # access_token_methods :from_bearer_authorization, :from_access_token_param,
   # :from_bearer_param
+  access_token_methods :from_bearer_authorization
 
   # Change the native redirect uri for client apps When clients register with
   # the following redirect uri, they won't be redirected to any server and the
@@ -108,6 +114,7 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
   # grant_flows %w(authorization_code client_credentials)
+  grant_flows %w[password]
 
   # Under some circumstances you might want to have applications auto-approved,
   # so that the user skips the authorization step.
