@@ -8,8 +8,8 @@ This project aims to make it easier for people to move.
 
 * Ruby on Rails
 * Postresql
-* Rspec
-  * [rspec_api_documentation](https://github.com/zipmark/rspec_api_documentation)
+* rspec, [rspec_api_documentation](https://github.com/zipmark/rspec_api_documentation)
+* jsonapi-resources
 
 
 # Tests

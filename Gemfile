@@ -36,6 +36,10 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 3.6.0'
   gem 'spring-commands-rspec', '~> 1.0.4'
+  # api documentation
+  gem 'rspec_api_documentation'
+  # api documentation viewer
+  gem 'apitome'
 end
 
 group :test do
@@ -63,9 +67,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # oauth provider
 gem 'doorkeeper', '~> 4.2.6'
 
-# api documentation
-gem 'rspec_api_documentation'
-# api documentation viewer
-gem 'apitome'
 # json api
-gem 'jsonapi-resources'
+gem 'jsonapi-resources', '~> 0.9.0'

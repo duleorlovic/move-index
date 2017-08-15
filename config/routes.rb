@@ -2,5 +2,9 @@ Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users
   root 'pages#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :v1 do
+    jsonapi_resources :organizations
+    # jsonapi_resources :users
+  end # namespace :v1
 end

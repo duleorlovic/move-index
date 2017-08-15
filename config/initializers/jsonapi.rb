@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 JSONAPI.configure do |config|
   #:underscored_key, :camelized_key, :dasherized_key, or custom
   config.json_key_format = :dasherized_key
@@ -11,14 +12,14 @@ JSONAPI.configure do |config|
   config.allow_filter = true
   config.raise_if_parameters_not_allowed = true
   # :none, :offset, :paged, or a custom paginator name
-  config.default_paginator = :none
+  config.default_paginator = :offset
   # Output pagination links at top level
   config.top_level_links_include_pagination = true
   config.default_page_size = 10
   config.maximum_page_size = 20
   # Metadata
   # Output record count in top level meta for find operation
-  config.top_level_meta_include_record_count = false
+  config.top_level_meta_include_record_count = true
   config.top_level_meta_record_count_key = :record_count
   config.top_level_meta_include_page_count = false
   config.top_level_meta_page_count_key = :page_count
@@ -53,9 +54,8 @@ JSONAPI.configure do |config|
   config.use_relationship_reflection = false
   # Resource cache
   # An ActiveSupport::Cache::Store or similar, used by Resources with caching
-  # enabled.
-  # Set to `nil` (the default) to disable caching, or to `Rails.cache` to use
-  # the
+  # enabled.  Set to `nil` (the default) to disable caching, or to `Rails.cache`
+  # to use the
   # Rails cache store.
   config.resource_cache = nil
   # Default resource cache field

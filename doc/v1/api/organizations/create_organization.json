@@ -1,0 +1,51 @@
+{
+  "resource": "Organizations",
+  "resource_explanation": null,
+  "http_method": "POST",
+  "route": "/v1/organizations",
+  "description": "Create organization",
+  "explanation": null,
+  "parameters": [
+    {
+      "required": true,
+      "name": "type",
+      "description": "Type of of resource, Must be organization"
+    },
+    {
+      "scope": "attributes",
+      "required": true,
+      "name": "name",
+      "description": "Name of the organization"
+    },
+    {
+      "scope": "attributes",
+      "required": true,
+      "name": "status",
+      "description": "Status of organization {\"personal\"=>0, \"registered_club\"=>1}"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "/v1/organizations",
+      "request_body": "{\"data\":{\"type\":\"organizations\",\"attributes\":{\"name\":\"My Organization\",\"status\":0}}}",
+      "request_headers": {
+        "Content-Type": "application/vnd.api+json"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/vnd.api+json",
+      "response_status": 201,
+      "response_status_text": "Created",
+      "response_body": "{\"data\":{\"id\":\"137\",\"type\":\"organizations\",\"links\":{\"self\":\"http://example.org/v1/organizations/137\"},\"attributes\":{\"name\":\"My Organization\",\"status\":\"personal\"}}}",
+      "response_headers": {
+        "Content-Type": "application/vnd.api+json"
+      },
+      "response_content_type": "application/vnd.api+json",
+      "curl": null
+    }
+  ]
+}
