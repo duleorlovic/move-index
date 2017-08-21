@@ -45,9 +45,11 @@ end
 group :test do
   gem 'capybara', '~> 2.14.4'
   gem 'capybara-email', '~> 2.5.0'
+  gem 'chromedriver-helper'
   gem 'factory_girl_rails', '~> 4.8.0'
   gem 'faker', '~> 1.7.3'
   gem 'guard-rspec', '~> 4.7.3'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 3.1'
 end
 
