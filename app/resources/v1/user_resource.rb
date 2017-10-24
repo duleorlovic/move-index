@@ -1,11 +1,8 @@
-module Api
-  module V1
-    class UserResource < BaseResource
-      class << self
-        def creatable_attributes(context)
-          super
-        end
-      end
+module V1
+  class UserResource < BaseResource
+    attributes :email, :password
+    def fetchable_fields
+      super - [:password]
     end
   end
 end

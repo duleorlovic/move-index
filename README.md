@@ -8,7 +8,10 @@ This project aims to make it easier for people to move.
 
 * Ruby on Rails
 * Postresql
-* rspec, [rspec_api_documentation](https://github.com/zipmark/rspec_api_documentation)
+* rspec
+* [rspec_api_documentation](https://github.com/zipmark/rspec_api_documentation)
+  * `rake docs:generate` will generate json files that is shown with
+  [apitome](https://github.com/jejacks0n/apitome) mouned at `/v1/api_docs`
 * jsonapi-resources
 
 
