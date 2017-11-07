@@ -6,7 +6,7 @@ RSpec.feature 'User confirmation email' do
 
   before do
     visit '/'
-    click_link 'Sign up'
+    click_link 'Register'
 
     fill_in 'Email', with: email
     fill_in 'Password', with: password

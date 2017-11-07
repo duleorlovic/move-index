@@ -4,9 +4,9 @@ RSpec.feature 'User Authentication' do
   let(:email) { 'my-user@asd.asd' }
   let(:password) { 'password' }
 
-  scenario 'sign up' do
+  scenario 'Register' do
     visit '/'
-    click_link 'Sign up'
+    click_link 'Register'
 
     fill_in 'Email', with: email
     fill_in 'Password', with: password
@@ -33,7 +33,7 @@ RSpec.feature 'User Authentication' do
     login_as user
     visit '/'
 
-    click_link 'Sign out'
+    click_link 'Log out'
 
     expect(page).to have_content 'Log in'
   end
